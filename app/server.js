@@ -36,7 +36,17 @@ app.get("/player", function (req, res) {
          FROM players`
     ).then(function (response) {
         res.status(200);
-        res.send(response.rows)
+        res.send(response.rows);
+    });
+});
+
+app.get("/teams", function (req, res) {
+    pool.querey(
+        `SELECT *
+         FROM teams`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows);
     });
 });
 
@@ -83,12 +93,72 @@ app.post("/add", function (req,res) {
             res.status(400);
             res.send();
         });
+    }
+    else if (type === "games"){
+        let homeTeam = req.body.hTeam;
+        let homeScore = req.body.hScore;
+        let awayTeam = req.body.aTeam;
+        let awayScore = req.body.aScore;
+        let winner;
+        
+        if (homeScore == awayScore){
+            pool.query(
+                `UPDATE teams
+                 SET ties = ties + 1
+                 WHERE name = '${homeTeam}'`
+            );
+            pool.query(
+                `UPDATE teams
+                 SET ties = ties + 1
+                 WHERE name = '${awayTeam}'`
+            );
+        }
+        else if (homeScore > awayScore){
+            pool.query(
+                `UPDATE teams
+                 SET wins = wins + 1
+                 WHERE name = '${homeTeam}'`
+            );
+            pool.query(
+                `UPDATE teams
+                 SET losses = losses + 1
+                 WHERE name = '${awayTeam}'`
+            );
+            let winner = homeTeam;
+        }
+        else{
+            pool.query(
+                `UPDATE teams
+                 SET wins = wins + 1
+                 WHERE name = '${awayTeam}'`
+            );
+            pool.query(
+                `UPDATE teams
+                 SET losses = losses + 1
+                 WHERE name = '${homeTeam}'`
+            );
+            let winner = awayTeam;
+        }
+        
+        pool.query(
+            `INSERT INTO games(hometeam, homescore, awayteam, awayscore, winner)
+             VALUES($1, $2, $3, $4, $5)
+             RETURNING *`,
+            [homeTeam, homeScore, awayTeam, awayScore, winner]
+        ).then(function (response) {
+            console.log("Inserted: Game");
+            console.log(response.rows);
+        }).catch(function (error) {
+            res.status(400);
+            res.send();
+        });  
     }	    
 });
     
 app.listen(port, hostname, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
 });
+
 
 
 
