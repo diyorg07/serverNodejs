@@ -32,6 +32,7 @@ function submitForm(type) {
             email: document.getElementById("email").value,
             pass: document.getElementById("psw").value
         };
+        clearData(type);
     }
     else if(type === "teams") {
         data = {
@@ -41,6 +42,7 @@ function submitForm(type) {
             player2: document.getElementById("p2").options[document.getElementById("p2").selectedIndex].value,
             player3: document.getElementById("p3").options[document.getElementById("p3").selectedIndex].value
         };
+        clearData(type);
     }
     else if(type === "games") {
         data = {
@@ -50,6 +52,7 @@ function submitForm(type) {
             aTeam: document.getElementById("t2").options[document.getElementById("t2").selectedIndex].value,
             aScore: document.getElementById("aScore").value
         };
+        clearData(type);
     }
     console.log(data);
     document.getElementById("myForm").style.display = "none";
@@ -70,6 +73,22 @@ function submitForm(type) {
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+function clearData(type) {
+    if(type ===  "player") {
+        document.getElementById("first").value = "";
+        document.getElementById("last").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("psw").value = "";
+    }
+    else if(type === "teams") {
+        document.getElementById("name").value = "";
+    }
+    else if(type === "games") {
+        document.getElementById("hScore").value = "";
+        document.getElementById("aScore").value = "";
+    }
 }
 
 function getForm(type) {
