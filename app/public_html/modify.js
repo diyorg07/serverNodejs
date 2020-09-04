@@ -47,7 +47,7 @@ function submitForm(type) {
             type: "game",
             hTeam: document.getElementById("t1").options[document.getElementById("t1").selectedIndex].value,
             hScore: document.getElementById("hScore").value,
-            aTeam: document.getElementById("t2").options[document.getElementById("t1").selectedIndex].value,
+            aTeam: document.getElementById("t2").options[document.getElementById("t2").selectedIndex].value,
             aScore: document.getElementById("aScore").value
         };
     }

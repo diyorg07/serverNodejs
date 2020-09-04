@@ -42,7 +42,7 @@ app.get("/player", function (req, res) {
 
 //Returns an array of Teams
 app.get("/teams", function (req, res) {
-    pool.querey(
+    pool.query(
         `SELECT *
          FROM teams`
     ).then(function (response) {
@@ -95,7 +95,7 @@ app.post("/add", function (req,res) {
             res.send();
         });
     }
-    else if (type === "games"){
+    else if (type === "game"){
         let homeTeam = req.body.hTeam;
         let homeScore = req.body.hScore;
         let awayTeam = req.body.aTeam;
