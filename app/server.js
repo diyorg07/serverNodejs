@@ -15,9 +15,20 @@ pool.connect().then(function () {
 app.use(express.static("public_html"));
 app.use(express.json());
 
+app.get("/", function (req, res) {
+    pool.query(
+        `SELECT DISTINCT * 
+        FROM teams 
+        ORDER BY wins DESC
+        FETCH first 5 ROWS only`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows);
+    });
+}
+
 app.post("/add", function (req,res) {
     console.log("New addition...");
-    console.log(req.body.type); 
     let type = req.body.type
     
     if (type === "player"){
@@ -32,7 +43,7 @@ app.post("/add", function (req,res) {
              RETURNING *`,
             [firstName, lastName, email, pass]
         ).then(function (response) {
-            console.log("Inserted:");
+            console.log("Inserted: Player");
             console.log(response.rows);
             res.status(200);
             res.send();
@@ -40,9 +51,16 @@ app.post("/add", function (req,res) {
             res.status(400);
             res.send();
         });
+    }
+    else if (type === "team"){
+        let teamName = req.body.name;
+        let player1 = req.body.player1;
+        let player2 = req.body.player2;
+        let player3 = req.body.player3;
     }	    
 });
     
 app.listen(port, hostname, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
 });
+
