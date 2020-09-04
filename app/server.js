@@ -32,8 +32,8 @@ app.get("/topTeams", function (req, res) {
 app.get("/recentGames", function (req, res) {
     pool.query(
         `SELECT * 
-        FROM games 
-        FETCH first 3 ROWS only`
+        FROM games
+        ORDER BY id DESC limit 3`
     ).then(function (response) {
         res.status(200);
         res.send(response.rows);
