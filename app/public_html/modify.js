@@ -18,7 +18,7 @@ addButton.addEventListener("click", function() {
     }
     else if(addButton.className === "games") {
         //get data from games.html
-        //getForm();
+        getForm("games");
     }
 });
 
@@ -39,6 +39,15 @@ function submitForm(type) {
             player1: document.getElementById("p1").options[document.getElementById("p1").selectedIndex].value,
             player2: document.getElementById("p2").options[document.getElementById("p2").selectedIndex].value,
             player3: document.getElementById("p3").options[document.getElementById("p3").selectedIndex].value
+        };
+    }
+    else if(type === "games") {
+        data = {
+            type: "game",
+            hTeam: document.getElementById("t1").options[document.getElementById("t1").selectedIndex].value,
+            hScore: document.getElementById("hScore").value,
+            aTeam: document.getElementById("t2").options[document.getElementById("t1").selectedIndex].value,
+            aScore: document.getElementById("aScore").value
         };
     }
     console.log(data);
@@ -67,6 +76,7 @@ function getForm(type) {
         document.getElementById("myForm").style.display = "block";
     }
     else if(type === "teams") {
+        //REPLACE TEST WITH LIST OF PLAYERS
         let html = `<label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
         //list of all available players for first member
@@ -74,7 +84,6 @@ function getForm(type) {
             html += `<option value=${test[i]}>${test[i]}</option>`;
         }
         html += `</select><label><b>Player 2</b></label><select id="p2" onchange="populate(this.id,'p3')"><option value=""></option>`;
-        let p1 = document.getElementById("p1");
         //list of all remaining players for second member
         for(let j in test) {
             html += `<option value=${test[j]}>${test[j]}</option>`;
@@ -88,6 +97,29 @@ function getForm(type) {
         document.getElementById("teams").innerHTML += html;
         document.getElementById("myForm").style.display = "block";
     }
+    else if(type === "games") {
+        //REPLACE TEST WITH LIST OF TEAMS
+        let html = `<label><b>Home Team</b></label>
+        <select id="t1" onchange="populate(this.id,'t2')"><option value=""></option>`;
+        //list of all available teams for home team
+        for(let i in test) {
+            html += `<option value=${test[i]}>${test[i]}</option>`;
+        }
+        html += `</select>
+        <label><b>Home Team Score</b></label>
+        <input id="hScore" type="text" placeholder="Enter Home Score" required>
+        <label><b>Away Team</b></label><select id="t2"><option value=""></option>`;
+        //list of all remaining teams for away team
+        for(let j in test) {
+            html += `<option value=${test[j]}>${test[j]}</option>`;
+        }
+        html += `</select>
+        <label><b>Away Team Score</b></label>
+        <input id="aScore" type="text" placeholder="Enter Away Score" required>
+        <button type="button" onclick="submitForm('games')">Submit</button>`;
+        document.getElementById("games").innerHTML += html;
+        document.getElementById("myForm").style.display = "block";
+    }
 }
 
 function populate(s1, s2) {
@@ -95,7 +127,6 @@ function populate(s1, s2) {
     let src1 = document.getElementById(s1);
     let src2 = document.getElementById(s2);
     src2.innerHTML = ``;
-    let index = test.indexOf(src1.value);
     for(let i = 0; i < src1.options.length; i++) {
         if(!(src1.selectedIndex === i)) {
             let option = document.createElement("option");
