@@ -15,7 +15,7 @@ pool.connect().then(function () {
 app.use(express.static("public_html"));
 app.use(express.json());
 
-app.get("/", function (req, res) {
+app.get("/index", function (req, res) {
     pool.query(
         `SELECT DISTINCT * 
         FROM teams 
@@ -25,7 +25,8 @@ app.get("/", function (req, res) {
         res.status(200);
         res.send(response.rows);
     });
-}
+
+});
 
 app.post("/add", function (req,res) {
     console.log("New addition...");
