@@ -3,7 +3,7 @@ let editButton = document.getElementById("edit");
 let delButton = document.getElementById("delete");
 
 let data = null;
-let test = ["a", "b", "c", "d"];
+let playerList = null;
 
 addButton.addEventListener("click", function() {
     let url = "";
@@ -76,8 +76,8 @@ function getForm(type) {
         document.getElementById("myForm").style.display = "block";
     }
     else if(type === "teams") {
-        let playerList = null;
         getPlayerList();
+        console.log(playerList);
         //REPLACE TEST WITH LIST OF PLAYERS
         let html = `<label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
