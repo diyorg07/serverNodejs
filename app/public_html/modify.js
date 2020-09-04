@@ -128,7 +128,13 @@ function getPlayerList() {
         }
         console.log(playerList);
         //REPLACE TEST WITH LIST OF PLAYERS
-        let html = `<label><b>Player 1</b></label>
+        let html = `<form action="/action_page.php" id="teams" class="false">
+        <h1>New Team</h1>
+    
+        <label><b>Team Name</b></label>
+        <input id="name" type="text" placeholder="Enter Team Name" required>
+
+        </form><label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
         //list of all available players for first member
         for(let i in playerList) {
@@ -162,7 +168,12 @@ function getTeamList() {
         }
         console.log(teamList);
         //REPLACE TEST WITH LIST OF TEAMS
-        let html = `<label><b>Home Team</b></label>
+        let html = `<div class="form-popup" id="myForm">
+        <form action="/action_page.php" id="games" class="form-container">
+            <h1>New Game Record</h1>
+
+        </form>
+        </div><label><b>Home Team</b></label>
         <select id="t1" onchange="populate(this.id,'t2')"><option value=""></option>`;
         //list of all available teams for home team
         for(let i in teamList) {
