@@ -143,11 +143,11 @@ function getPlayerList() {
     fetch(`/player`).then(function (response) {
         return response.json();
     }).then(function (newData) {
-        console.log(newData);
         let arr = [];
         for(let i = 0; i < newData.length; i++) {
             arr.push(newData[i].firstname + " " + newData[i].lastname);
         }
+        console.log(arr);
         return arr;
     }).catch(function (error) {
         console.log(error);
