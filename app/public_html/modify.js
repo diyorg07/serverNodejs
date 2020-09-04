@@ -77,27 +77,7 @@ function getForm(type) {
     }
     else if(type === "teams") {
         getPlayerList();
-        console.log(playerList);
-        //REPLACE TEST WITH LIST OF PLAYERS
-        let html = `<label><b>Player 1</b></label>
-        <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
-        //list of all available players for first member
-        for(let i in playerList) {
-            html += `<option value=${playerList[i]}>${playerList[i]}</option>`;
-        }
-        html += `</select><label><b>Player 2</b></label><select id="p2" onchange="populate(this.id,'p3')"><option value=""></option>`;
-        //list of all remaining players for second member
-        for(let j in playerList) {
-            html += `<option value=${playerList[j]}>${playerList[j]}</option>`;
-        }
-        html += `</select><label><b>Player 3</b></label><select id="p3"><option value=""></option>`;
-        //list of all remaining players for third member
-        for(let l in playerList) {
-            html += `<option value=${playerList[l]}>${playerList[l]}</option>`;
-        }
-        html += `</select><button type="button" onclick="submitForm('teams')">Submit</button>`;
-        document.getElementById("teams").innerHTML += html;
-        document.getElementById("myForm").style.display = "block";
+        
     }
     else if(type === "games") {
         //REPLACE TEST WITH LIST OF TEAMS
@@ -147,6 +127,27 @@ function getPlayerList() {
         for(let i = 0; i < newData.length; i++) {
             playerList.push(newData[i].firstname + " " + newData[i].lastname);
         }
+        console.log(playerList);
+        //REPLACE TEST WITH LIST OF PLAYERS
+        let html = `<label><b>Player 1</b></label>
+        <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
+        //list of all available players for first member
+        for(let i in playerList) {
+            html += `<option value=${playerList[i]}>${playerList[i]}</option>`;
+        }
+        html += `</select><label><b>Player 2</b></label><select id="p2" onchange="populate(this.id,'p3')"><option value=""></option>`;
+        //list of all remaining players for second member
+        for(let j in playerList) {
+            html += `<option value=${playerList[j]}>${playerList[j]}</option>`;
+        }
+        html += `</select><label><b>Player 3</b></label><select id="p3"><option value=""></option>`;
+        //list of all remaining players for third member
+        for(let l in playerList) {
+            html += `<option value=${playerList[l]}>${playerList[l]}</option>`;
+        }
+        html += `</select><button type="button" onclick="submitForm('teams')">Submit</button>`;
+        document.getElementById("teams").innerHTML += html;
+        document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);
     })
