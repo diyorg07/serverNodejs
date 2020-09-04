@@ -15,7 +15,18 @@ pool.connect().then(function () {
 app.use(express.static("public_html"));
 app.use(express.json());
 
-app.get("/index")
+app.post("/addPlayer"), function (req,res) {
+    console.log("New player added...");
+});
+
+app.post("/addTeam"), function (req,res) {
+    console.log("New team added...");
+});
+
+app.post("/addGame", function (req,res) {
+    console.log("New game added...");
+});
+    
 app.listen(port, hostname, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
 });
