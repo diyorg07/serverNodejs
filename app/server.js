@@ -40,6 +40,7 @@ app.get("/player", function (req, res) {
     });
 });
 
+//Returns an array of Teams
 app.get("/teams", function (req, res) {
     pool.querey(
         `SELECT *
