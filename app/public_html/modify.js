@@ -3,22 +3,40 @@ let editButton = document.getElementById("edit");
 let delButton = document.getElementById("delete");
 
 let data = null;
+let test = ["a", "b", "c", "d"];
 
 addButton.addEventListener("click", function() {
     let url = "";
 
     if(addButton.className === "player") {
         //get data from players.html
-        getForm();
+        getForm("player");
     }
     else if(addButton.className === "teams") {
         //get data from teams.html
-        getForm();
+        //getForm();
     }
     else if(addButton.className === "games") {
         //get data from games.html
-        getForm();
+        //getForm();
     }
+});
+
+function submitForm(type) {
+    if(type === "player") {
+        data = {
+            type: "player",
+            firstName: document.getElementById("first").value,
+            lastName: document.getElementById("last").value,
+            email: document.getElementById("email").value,
+            pass: document.getElementById("psw").value
+        };
+    }
+    else if(type === "team") {
+
+    }
+    console.log(data);
+    document.getElementById("myForm").style.display = "none";
     fetch(url + `/add`, {
         method: 'POST',
         headers: {
@@ -36,22 +54,13 @@ addButton.addEventListener("click", function() {
     }).catch(function (error) {
         console.log(error);
     });
-});
-
-function submitForm(type) {
-    if(type === "player") {
-        data = {
-            type: "player",
-            firstName: document.getElementById("first").value,
-            lastName: document.getElementById("last").value,
-            email: document.getElementById("email").value,
-            pass: document.getElementById("psw").value
-        };
-    }
-    console.log(data);
-    document.getElementById("myForm").style.display = "none";
 }
 
-function getForm() {
-    document.getElementById("myForm").style.display = "block";
+function getForm(type) {
+    if(type ===  "player") {
+        document.getElementById("myForm").style.display = "block";
+    }
+    else if(type === "team") {
+
+    }
 }
