@@ -76,6 +76,7 @@ function getForm(type) {
         document.getElementById("myForm").style.display = "block";
     }
     else if(type === "teams") {
+        getPlayerList();
         //REPLACE TEST WITH LIST OF PLAYERS
         let html = `<label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
@@ -135,4 +136,14 @@ function populate(s1, s2) {
             src2.options.add(option);
         }
     }
+}
+
+function getPlayerList() {
+    fetch(`/player`).then(function (response) {
+        return response.json();
+    }).then(function (newData) {
+        console.log(newData);
+    }).catch(function (error) {
+        console.log(error);
+    })
 }
