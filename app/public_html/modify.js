@@ -77,6 +77,7 @@ function getForm(type) {
     }
     else if(type === "teams") {
         let playerList = getPlayerList();
+        console.log(playerList);
         //REPLACE TEST WITH LIST OF PLAYERS
         let html = `<label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
