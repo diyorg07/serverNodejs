@@ -2,22 +2,21 @@ let addButton = document.getElementById("add");
 let editButton = document.getElementById("edit");
 let delButton = document.getElementById("delete");
 
+let data = null;
+
 addButton.addEventListener("click", function() {
     let url = "";
-    let data = null;
+
     if(addButton.className === "player") {
         //get data from players.html
         getPlayerForm();
-        data = {};
     }
     else if(addButton.className === "teams") {
         //get data from teams.html
         getPlayerForm();
-        data = {};
     }
     else if(addButton.className === "games") {
         //get data from games.html
-        data = {};
     }
     fetch(url + `/add`, {
         method: 'POST',
@@ -38,31 +37,19 @@ addButton.addEventListener("click", function() {
     });
 });
 
-function submitForm() {
-    let container = document.getElementById("form");
-    container.innerHTML = "";
+function submitForm(type) {
+    if(type === "player") {
+        data = {
+            firstName: document.getElementById("first").value,
+            lastName: document.getElementById("last").value,
+            email: document.getElementById("email").value,
+            pass: document.getElementById("psw").value
+        };
+    }
+    console.log(data);
+    document.getElementById("myForm").style.display = "none";
 }
 
 function getPlayerForm() {
-    let container = document.getElementById("form");
-    let html = `<div class="form-popup" id="myForm">
-                <form action="/action_page.php" class="form-container">
-                    <h1>New Player</h1>
-                
-                    <label><b>First Name</b></label>
-                    <input type="text" placeholder="Enter First Name" required>
-
-                    <label><b>Last Name</b></label>
-                    <input type="text" placeholder="Enter Last Name" required>
-
-                    <label><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" required>
-
-                    <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" required>
-                
-                    <button type="button" onclick="submitForm()">Submit</button>
-                </form>
-                </div>`;
-    container.innerHTML = html;
+    document.getElementById("myForm").style.display = "block";
 }
