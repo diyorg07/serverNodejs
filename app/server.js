@@ -16,12 +16,24 @@ app.use(express.static("public_html"));
 app.use(express.json());
 
 //Return top 5 teams by wins
-app.get("/index", function (req, res) {
+app.get("/topTeams", function (req, res) {
     pool.query(
         `SELECT DISTINCT * 
         FROM teams 
         ORDER BY wins DESC
         FETCH first 5 ROWS only`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows);
+    });
+
+});
+
+app.get("/recentGames", function (req, res) {
+    pool.query(
+        `SELECT * 
+        FROM games 
+        FETCH first 3 ROWS only`
     ).then(function (response) {
         res.status(200);
         res.send(response.rows);
