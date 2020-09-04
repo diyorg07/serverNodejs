@@ -15,6 +15,7 @@ pool.connect().then(function () {
 app.use(express.static("public_html"));
 app.use(express.json());
 
+//Return top 5 teams by wins
 app.get("/index", function (req, res) {
     pool.query(
         `SELECT DISTINCT * 
@@ -26,6 +27,17 @@ app.get("/index", function (req, res) {
         res.send(response.rows);
     });
 
+});
+
+//Return an array of Players
+app.get("/player", function (req, res) {
+    pool.query(
+        `SELECT *
+         FROM players`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows)
+    });
 });
 
 app.post("/add", function (req,res) {
