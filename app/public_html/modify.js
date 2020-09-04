@@ -145,10 +145,9 @@ function getPlayerList() {
     }).then(function (newData) {
         let arr = [];
         for(let i = 0; i < newData.length; i++) {
-            console.log(newData[i].firstname + " " + newData[i].lastname);
             arr.push(newData[i].firstname + " " + newData[i].lastname);
         }
-        
+        console.log(arr);
         return arr;
     }).catch(function (error) {
         console.log(error);
