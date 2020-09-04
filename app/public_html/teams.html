@@ -26,7 +26,26 @@
             <button id="add" class="teams">Add a New Team</button>
         </div>
 
-        <div id="form"></div>
+        <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <h1>New Team</h1>
+            
+                <label><b>Team Name</b></label>
+                <input id="first" type="text" placeholder="Enter First Name" required>
+
+                <label><b>Last Name</b></label>
+                <input id="last" type="text" placeholder="Enter Last Name" required>
+
+                <label><b>Email</b></label>
+                <input id="email" type="text" placeholder="Enter Email" required>
+
+                <label><b>Password</b></label>
+                <input id="psw" type="password" placeholder="Enter Password" required>
+            
+                <button type="button" onclick="submitForm('player')">Submit</button>
+            </form>
+        </div>
+
         <script src="modify.js"></script>
     </body>
 </html>

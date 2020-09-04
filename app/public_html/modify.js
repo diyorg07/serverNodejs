@@ -41,6 +41,7 @@ addButton.addEventListener("click", function() {
 function submitForm(type) {
     if(type === "player") {
         data = {
+            type: "player",
             firstName: document.getElementById("first").value,
             lastName: document.getElementById("last").value,
             email: document.getElementById("email").value,
