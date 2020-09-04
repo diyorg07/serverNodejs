@@ -58,10 +58,25 @@ app.post("/add", function (req,res) {
         let player1 = req.body.player1;
         let player2 = req.body.player2;
         let player3 = req.body.player3;
+        
+        pool.query(
+            `INSERT INTO teams(name, player1, player2, player3, wins, losses, ties)
+             VALUES($1, $2, $3, $4, $5, $6, $7)
+             RETURNING *`,
+            [teamName, player1, player2, player3, 0, 0, 0]
+        ).then(function (response) {
+            console.log("Inserted: Team");
+            console.log(response.rows);
+        }).catch(function (error) {
+            res.status(400);
+            res.send();
+        });
     }	    
 });
     
 app.listen(port, hostname, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
 });
+
+
 
