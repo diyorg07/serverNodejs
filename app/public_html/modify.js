@@ -9,14 +9,15 @@ addButton.addEventListener("click", function() {
 
     if(addButton.className === "player") {
         //get data from players.html
-        getPlayerForm();
+        getForm();
     }
     else if(addButton.className === "teams") {
         //get data from teams.html
-        getPlayerForm();
+        getForm();
     }
     else if(addButton.className === "games") {
         //get data from games.html
+        getForm();
     }
     fetch(url + `/add`, {
         method: 'POST',
@@ -50,6 +51,6 @@ function submitForm(type) {
     document.getElementById("myForm").style.display = "none";
 }
 
-function getPlayerForm() {
+function getForm() {
     document.getElementById("myForm").style.display = "block";
 }
