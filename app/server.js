@@ -15,22 +15,22 @@ pool.connect().then(function () {
 app.use(express.static("public_html"));
 app.use(express.json());
 
-app.post("/add"), function (req,res) {
+app.post("/add", function (req,res) {
     console.log("New addition...");
-    
+    console.log(req.body.type); 
     let type = req.body.type
     
-    if type == "player":
+    if (type === "player"){
         let firstName = req.body.firstName;
         let lastName = req.body.lastName;
         let email = req.body.email;
         let pass = req.body.pass;
         
         pool.query(
-            `INSERT INTO players(first, last, email, pass)
+            `INSERT INTO players(firstname, lastname, email, pass)
              VALUES($1, $2, $3, $4)
              RETURNING *`,
-            [firstNmae, lastName, email, pass]
+            [firstName, lastName, email, pass]
         ).then(function (response) {
             console.log("Inserted:");
             console.log(response.rows);
@@ -39,7 +39,8 @@ app.post("/add"), function (req,res) {
         }).catch(function (error) {
             res.status(400);
             res.send();
-        })
+        });
+    }	    
 });
     
 app.listen(port, hostname, () => {

@@ -37,7 +37,7 @@ function submitForm(type) {
     }
     console.log(data);
     document.getElementById("myForm").style.display = "none";
-    fetch(url + `/add`, {
+    fetch(`/add`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
