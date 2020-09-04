@@ -76,8 +76,8 @@ function getForm(type) {
         document.getElementById("myForm").style.display = "block";
     }
     else if(type === "teams") {
-        let playerList = getPlayerList();
-        console.log(playerList);
+        let playerList = null;
+        getPlayerList();
         //REPLACE TEST WITH LIST OF PLAYERS
         let html = `<label><b>Player 1</b></label>
         <select id="p1" onchange="populate(this.id,'p2')"><option value=""></option>`;
@@ -143,12 +143,10 @@ function getPlayerList() {
     fetch(`/player`).then(function (response) {
         return response.json();
     }).then(function (newData) {
-        let arr = [];
+        playerList = [];
         for(let i = 0; i < newData.length; i++) {
-            arr.push(newData[i].firstname + " " + newData[i].lastname);
+            playerList.push(newData[i].firstname + " " + newData[i].lastname);
         }
-        console.log(arr);
-        return arr;
     }).catch(function (error) {
         console.log(error);
     })
