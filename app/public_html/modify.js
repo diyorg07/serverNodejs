@@ -4,6 +4,7 @@ let delButton = document.getElementById("delete");
 
 let data = null;
 let playerList = null;
+let teamList = null;
 
 addButton.addEventListener("click", function() {
     let url = "";
@@ -77,30 +78,9 @@ function getForm(type) {
     }
     else if(type === "teams") {
         getPlayerList();
-        
     }
     else if(type === "games") {
-        //REPLACE TEST WITH LIST OF TEAMS
-        let html = `<label><b>Home Team</b></label>
-        <select id="t1" onchange="populate(this.id,'t2')"><option value=""></option>`;
-        //list of all available teams for home team
-        for(let i in test) {
-            html += `<option value=${test[i]}>${test[i]}</option>`;
-        }
-        html += `</select>
-        <label><b>Home Team Score</b></label>
-        <input id="hScore" type="text" placeholder="Enter Home Score" required>
-        <label><b>Away Team</b></label><select id="t2"><option value=""></option>`;
-        //list of all remaining teams for away team
-        for(let j in test) {
-            html += `<option value=${test[j]}>${test[j]}</option>`;
-        }
-        html += `</select>
-        <label><b>Away Team Score</b></label>
-        <input id="aScore" type="text" placeholder="Enter Away Score" required>
-        <button type="button" onclick="submitForm('games')">Submit</button>`;
-        document.getElementById("games").innerHTML += html;
-        document.getElementById("myForm").style.display = "block";
+        getTeamList();
     }
 }
 
@@ -147,6 +127,41 @@ function getPlayerList() {
         }
         html += `</select><button type="button" onclick="submitForm('teams')">Submit</button>`;
         document.getElementById("teams").innerHTML += html;
+        document.getElementById("myForm").style.display = "block";
+    }).catch(function (error) {
+        console.log(error);
+    })
+}
+
+function getTeamList() {
+    fetch(`/teams`).then(function (response) {
+        return response.json();
+    }).then(function (newData) {
+        teamList = [];
+        for(let i = 0; i < newData.length; i++) {
+            teamList.push(newData[i].name);
+        }
+        console.log(teamList);
+        //REPLACE TEST WITH LIST OF TEAMS
+        let html = `<label><b>Home Team</b></label>
+        <select id="t1" onchange="populate(this.id,'t2')"><option value=""></option>`;
+        //list of all available teams for home team
+        for(let i in teamList) {
+            html += `<option value=${teamList[i]}>${teamList[i]}</option>`;
+        }
+        html += `</select>
+        <label><b>Home Team Score</b></label>
+        <input id="hScore" type="text" placeholder="Enter Home Score" required>
+        <label><b>Away Team</b></label><select id="t2"><option value=""></option>`;
+        //list of all remaining teams for away team
+        for(let j in teamList) {
+            html += `<option value=${teamList[j]}>${teamList[j]}</option>`;
+        }
+        html += `</select>
+        <label><b>Away Team Score</b></label>
+        <input id="aScore" type="text" placeholder="Enter Away Score" required>
+        <button type="button" onclick="submitForm('games')">Submit</button>`;
+        document.getElementById("games").innerHTML += html;
         document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);
