@@ -18,7 +18,6 @@ li a {
     text-decoration: none;
 }
 
-    /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
 }
@@ -38,6 +37,14 @@ li a:hover {
     width: 100%;
 }
 
+#recents th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #af4c4c;
+    color: white;
+}
+
 #recents td, #recent th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -54,6 +61,14 @@ li a:hover {
 #top5 {
     border-collapse: collapse;
     width: 100%;
+}
+
+#top5 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #af4c4c;
+    color: white;
 }
 
 #top5 td, #recent th {
