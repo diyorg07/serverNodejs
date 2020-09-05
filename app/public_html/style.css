@@ -33,20 +33,38 @@ li a:hover {
     border: 3px solid #f1f1f1;
     z-index: 9;
 }
-#recent {
+#recents {
     border-collapse: collapse;
     width: 100%;
 }
 
-#recent td, #recent th {
+#recents td, #recent th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#recent tr:nth-child(even){
+#recents tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
-#recent tr:hover {
+#recents tr:hover {
+    background-color: #ddd;
+}
+
+#top5 {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#top5 td, #recent th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#top5 tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#top5 tr:hover {
     background-color: #ddd;
 }
