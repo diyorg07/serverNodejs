@@ -41,7 +41,7 @@ li a:hover {
 #recents th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #af4c4c;
     color: white;
 }
@@ -68,7 +68,7 @@ li a:hover {
 #top5 th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #af4c4c;
     color: white;
 }
