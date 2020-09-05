@@ -151,7 +151,7 @@ function getPlayerList() {
             html += `<option value=${playerList[l]}>${playerList[l]}</option>`;
         }
         html += `</select><button type="button" onclick="submitForm('teams')">Submit</button>`;
-        document.getElementById("myForm").innerHTML += html;
+        document.getElementById("myForm").innerHTML = html;
         document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);
@@ -191,7 +191,7 @@ function getTeamList() {
         <label><b>Away Team Score</b></label>
         <input id="aScore" type="text" placeholder="Enter Away Score" required>
         <button type="button" onclick="submitForm('games')">Submit</button>`;
-        document.getElementById("myForm").innerHTML += html;
+        document.getElementById("myForm").innerHTML = html;
         document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);
