@@ -32,4 +32,21 @@ li a:hover {
     right: 15px;
     border: 3px solid #f1f1f1;
     z-index: 9;
-  }
+}
+#recent {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#recent td, #recent th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#recent tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#recent tr:hover {
+    background-color: #ddd;
+}
