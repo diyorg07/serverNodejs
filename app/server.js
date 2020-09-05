@@ -149,9 +149,9 @@ app.post("/add", function (req,res) {
     }
     else if (type === "game"){
         let homeTeam = req.body.hTeam;
-        let homeScore = parseint(req.body.hScore);
+        let homeScore = parseInt(req.body.hScore);
         let awayTeam = req.body.aTeam;
-        let awayScore = parseint(req.body.aScore);
+        let awayScore = parseInt(req.body.aScore);
         let winner;
         
         if (homeScore == awayScore){
