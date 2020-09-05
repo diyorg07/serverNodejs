@@ -32,14 +32,14 @@ li a:hover {
     border: 3px solid #f1f1f1;
     z-index: 9;
 }
-#recents {
+#recents, #top5, #playersTable, #teamsTable, #gamesTable {
     border-collapse: collapse;
     text-align: center;
     width: 100%;
     font-size: 16pt;
 }
 
-#recents th {
+#recents th, #top5 th, #playersTable th, #teamsTable th, #gamesTable th{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
@@ -47,43 +47,15 @@ li a:hover {
     color: white;
 }
 
-#recents td, #recent th {
+#recents td, #recent th, #top5 td, #top5 th, #playersTable td, #playersTable th, #teamsTable td, #teamsTable th, #gamesTable td, #gamesTable th{
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#recents tr:nth-child(even){
+#recents tr:nth-child(even), #top5 tr:nth-child(even), #playersTable tr:nth-child(even), #teamsTable tr:nth-child(even), #gamesTable tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
-#recents tr:hover {
-    background-color: #ddd;
-}
-
-#top5 {
-    border-collapse: collapse;
-    text-align: center;
-    width: 100%;
-    font-size: 16pt;
-}
-
-#top5 th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #af4c4c;
-    color: white;
-}
-
-#top5 td, #recent th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#top5 tr:nth-child(even){
-    background-color: #f2f2f2;
-}
-
-#top5 tr:hover {
+#recents tr:hover, #top5 tr:hover, #playersTable tr:hover, #teamsTable tr:hover, #gamesTable tr:hover{
     background-color: #ddd;
 }
