@@ -19,8 +19,8 @@ function populatePlayers(arr){
             lastName.textContent = arr[x].lastname;
             team.textContent = arr[x].team;
             
-            row.append(firstname);
-            row.append(lastname);
+            row.append(firstName);
+            row.append(lastName);
             row.append(team);
             players.append(row);
         }

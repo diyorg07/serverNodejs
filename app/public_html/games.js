@@ -1,7 +1,7 @@
 let games = document.getElementById("games");
 
 
-fetch('/gamesAll').then(function (response) {
+fetch('/games').then(function (response) {
     return response.json()
 }).then(function (data) {
     console.log(data);
@@ -18,12 +18,12 @@ function populateGames(arr){
 
             homeTeam.textContent = arr[x].hometeam;
             awayTeam.textContent = arr[x].awayteam;
-	        score.textContent = arr[x].homescore + " VS " + arr[x].awayscore;
+	    score.textContent = arr[x].homescore + " VS " + arr[x].awayscore;
 
             
             row.append(homeTeam);
             row.append(score);
             row.append(awayTeam);
-            recentGames.append(row);
+            games.append(row);
         }
 }
