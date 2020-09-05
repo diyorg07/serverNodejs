@@ -29,6 +29,7 @@ app.get("/topTeams", function (req, res) {
 
 });
 
+//Return 3 most recent games
 app.get("/recentGames", function (req, res) {
     pool.query(
         `SELECT * 
@@ -41,11 +42,33 @@ app.get("/recentGames", function (req, res) {
 
 });
 
-//Return an array of Players
-app.get("/player", function (req, res) {
+app.get("/games", function (req, res) {
+    pool.query(
+        `SELECT * 
+        FROM games`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows);
+    });
+
+});
+
+app.get("/playersAll", function (req, res) {
     pool.query(
         `SELECT *
          FROM players`
+    ).then(function (response) {
+        res.status(200);
+        res.send(response.rows);
+    });
+});
+
+//Return an array of Players who are not on a team
+app.get("/player", function (req, res) {
+    pool.query(
+        `SELECT *
+         FROM players
+         WHERE team IS NULL`
     ).then(function (response) {
         res.status(200);
         res.send(response.rows);
@@ -63,6 +86,7 @@ app.get("/teams", function (req, res) {
     });
 });
 
+//Sends data of Players, Teams or Games to the proper database table
 app.post("/add", function (req,res) {
     console.log("New addition...");
     let type = req.body.type
@@ -94,6 +118,22 @@ app.post("/add", function (req,res) {
         let player2 = req.body.player2;
         let player3 = req.body.player3;
         
+        pool.query(
+            `UPDATE players
+             SET team = ${teamName}
+             WHERE firstname = ${player1}`
+        );
+        pool.query(
+            `UPDATE players
+             SET team = ${teamName}
+             WHERE firstname = ${player2}`
+        );
+        pool.query(
+            `UPDATE players
+             SET team = ${teamName}
+             WHERE firstname = ${player3}`
+        );
+         
         pool.query(
             `INSERT INTO teams(name, player1, player2, player3, wins, losses, ties)
              VALUES($1, $2, $3, $4, $5, $6, $7)
