@@ -120,18 +120,18 @@ app.post("/add", function (req,res) {
         
         pool.query(
             `UPDATE players
-             SET team = ${teamName}
-             WHERE firstname = ${player1}`
+             SET team = '${teamName}'
+             WHERE firstname = '${player1}'`
         );
         pool.query(
             `UPDATE players
-             SET team = ${teamName}
-             WHERE firstname = ${player2}`
+             SET team = '${teamName}'
+             WHERE firstname = '${player2}'`
         );
         pool.query(
             `UPDATE players
-             SET team = ${teamName}
-             WHERE firstname = ${player3}`
+             SET team = '${teamName}'
+             WHERE firstname = '${player3}'`
         );
          
         pool.query(

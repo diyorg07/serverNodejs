@@ -1,6 +1,4 @@
 let addButton = document.getElementById("add");
-let editButton = document.getElementById("edit");
-let delButton = document.getElementById("delete");
 
 let data = null;
 let playerList = null;
@@ -8,6 +6,7 @@ let teamList = null;
 
 addButton.addEventListener("click", function() {
     let url = "";
+    addButton.disabled = true;
 
     if(addButton.className === "player") {
         //get data from players.html
@@ -56,6 +55,7 @@ function submitForm(type) {
     }
     console.log(data);
     document.getElementById("myForm").style.display = "none";
+    addButton.disabled = false;
     fetch(`/add`, {
         method: 'POST',
         headers: {
@@ -151,7 +151,7 @@ function getPlayerList() {
             html += `<option value=${playerList[l]}>${playerList[l]}</option>`;
         }
         html += `</select><button type="button" onclick="submitForm('teams')">Submit</button>`;
-        document.getElementById("myForm").innerHTML += html;
+        document.getElementById("myForm").innerHTML = html;
         document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);
@@ -191,7 +191,7 @@ function getTeamList() {
         <label><b>Away Team Score</b></label>
         <input id="aScore" type="text" placeholder="Enter Away Score" required>
         <button type="button" onclick="submitForm('games')">Submit</button>`;
-        document.getElementById("myForm").innerHTML += html;
+        document.getElementById("myForm").innerHTML = html;
         document.getElementById("myForm").style.display = "block";
     }).catch(function (error) {
         console.log(error);

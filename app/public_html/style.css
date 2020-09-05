@@ -18,7 +18,6 @@ li a {
     text-decoration: none;
 }
 
-    /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
 }
@@ -33,20 +32,58 @@ li a:hover {
     border: 3px solid #f1f1f1;
     z-index: 9;
 }
-#recent {
+#recents {
     border-collapse: collapse;
+    text-align: center;
     width: 100%;
+    font-size: 16pt;
 }
 
-#recent td, #recent th {
+#recents th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #af4c4c;
+    color: white;
+}
+
+#recents td, #recent th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#recent tr:nth-child(even){
+#recents tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
-#recent tr:hover {
+#recents tr:hover {
+    background-color: #ddd;
+}
+
+#top5 {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    font-size: 16pt;
+}
+
+#top5 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #af4c4c;
+    color: white;
+}
+
+#top5 td, #recent th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#top5 tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#top5 tr:hover {
     background-color: #ddd;
 }
