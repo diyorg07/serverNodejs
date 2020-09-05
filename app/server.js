@@ -149,9 +149,9 @@ app.post("/add", function (req,res) {
     }
     else if (type === "game"){
         let homeTeam = req.body.hTeam;
-        let homeScore = req.body.hScore;
+        let homeScore = parseint(req.body.hScore);
         let awayTeam = req.body.aTeam;
-        let awayScore = req.body.aScore;
+        let awayScore = parseint(req.body.aScore);
         let winner;
         
         if (homeScore == awayScore){
@@ -178,7 +178,7 @@ app.post("/add", function (req,res) {
                  SET losses = losses + 1
                  WHERE name = '${awayTeam}'`
             );
-            let winner = homeTeam;
+            winner = homeTeam;
         }
         else{
             pool.query(
@@ -191,7 +191,7 @@ app.post("/add", function (req,res) {
                  SET losses = losses + 1
                  WHERE name = '${homeTeam}'`
             );
-            let winner = awayTeam;
+            winner = awayTeam;
         }
         
         pool.query(
