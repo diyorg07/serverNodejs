@@ -167,7 +167,8 @@ app.post("/add", function (req,res) {
             );
         }
         else if (homeScore > awayScore){
-            pool.query(
+            console.log("DEBUG");
+	    pool.query(
                 `UPDATE teams
                  SET wins = wins + 1
                  WHERE name = '${homeTeam}'`
